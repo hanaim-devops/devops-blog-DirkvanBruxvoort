@@ -8,12 +8,13 @@ Het doel van dit onderzoek is om inzicht te krijgen in de werking van Kubernetes
 Hoe kan Horizontal Pod Autoscaling (HPA) in Kubernetes de prestaties en efficiëntie van jouw applicaties optimaliseren?
 
 ## Deelvragen
-- Hoe werkt HPA?
-- Wat zijn de parameters om HPA in te stellen?
-- Wat zijn de voordelen van HPA?
-- Wat zijn de nadelen van HPA?
-- Hoe past HPA in het DevOps landschap?
-- Wat zijn de verschillende manieren om HPA in te stellen?
+- Hoe werkt HPA? (Literatuurstudie).
+- Wat zijn de parameters om HPA in te stellen? (Literatuurstudie).
+- Wat zijn de voordelen van HPA? (Community Research).
+- Wat zijn de nadelen van HPA? (Community Research).
+- Hoe past HPA in het DevOps landschap? (Literatuurstudie).
+- Wat zijn de verschillende manieren om HPA in te stellen? (Literatuurstudie).
+- Hoe implementateer je HPA? (Prototyping).
 
 ## Onderzoeksmethode (Hbo-I. n.d.)
 Om deze vragen te beantwoorden, wordt gebruikgemaakt van een combinatie van kwalitatieve en kwantitatieve onderzoeksmethoden. Deze methoden zorgen voor een diepgaande analyse van de theorie, ondersteund door praktische experimenten en implementaties. We maken gebruik van de workshop- en showroom- en library-onderzoeksruimtes van de ICT research methods voor het onderzoek.
