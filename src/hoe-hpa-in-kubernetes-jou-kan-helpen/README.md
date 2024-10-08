@@ -49,7 +49,7 @@ Meer over Kubernetes lees je hier:
 <br>
 <br>
 
-## Hoe werkt HPA?
+## Hoe HPA werkt
 ![hoe-werkt-hpa](https://www.kubecost.com/images/hpa-overview.png)
 *Afbeelding 1: Hoe hpa werkt uitgelegd (Kubecost, z.d.).* <br><br>
 
@@ -72,7 +72,7 @@ In afbeelding 2 staat welke onderdelen er zijn binnen HPA en hoe deze met elkaar
 <br>
 <br>
 
-## Wat zijn de parameters om HPA in te stellen? 
+## Parameters HPA 
 Om HPA in te stellen, maak je een HPA-object aan met de volgende eigenschappen:
 - Target CPU- of geheugenbelasting: Stel de CPU- of geheugenbelasting in die je wilt bereiken (Spectrocloud, n.d.).
 - Min replicas: Bepaal het minimum aantal pods dat je nodig hebt (Spectrocloud, n.d.).
@@ -83,7 +83,7 @@ Om HPA in te stellen, maak je een HPA-object aan met de volgende eigenschappen:
 <br>
 <br>
 
-## Wat zijn de voordelen van HPA? 
+## Voordelen HPA
 HPA (Horizontal Pod Autoscaler) biedt de volgende voordelen:
 - Onbeperkte flexibiliteit: HPA maakt het mogelijk om automatisch op en neer te schalen op basis van de belasting van je applicaties. Dit zorgt voor een dynamische toewijzing van resources, waardoor je je Kubernetes-cluster effectief kunt beheren zonder handmatige ingrepen (InSpark, 20 oktober 2023).
 - Optimalisatie van prestaties: Door het gebruik van HPA kun je je applicaties nauwkeurig en efficiënt schalen op basis van de vraag. Microservices kunnen individueel worden opgeschaald, wat leidt tot een optimale prestatie. Bovendien zorgt HPA ervoor dat Kubernetes constant de nodes monitort en automatisch reageert op eventuele problemen, waardoor de prestaties en beschikbaarheid van je applicaties altijd hoog blijven (InSpark, 20 oktober 2023).
@@ -95,7 +95,7 @@ HPA (Horizontal Pod Autoscaler) biedt de volgende voordelen:
 <br>
 <br>
 
-## Wat zijn de nadelen van HPA?
+## Nadelen HPA
 HPA (Horizontal Pod Autoscaler) kent de volgende nadelen:
 - Je raakt het overzicht kwijt: Het gebruik van HPA in Kubernetes kan leiden tot een verlies van overzicht. Wanneer je probeert om alle workloads en applicaties tegelijk te moderniseren en te migreren, kan het complex zijn om alle containers en hun schaalacties te monitoren. Containers zijn namelijk dynamische eenheden die snel kunnen worden aangemaakt of verwijderd, waardoor je moeite kunt hebben om je infrastructuur volledig te overzien (InSpark, 20 oktober 2023).
 - Je hebt geen eigen blauwdruk gemaakt: Hoewel HPA automatisch schaalt op basis van vooraf ingestelde voorwaarden, vereist het systeem dat je een gedetailleerde blauwdruk hebt van de gewenste staat van je applicaties. Dit betekent dat je exact moet definiëren hoe het systeem moet functioneren en welke acties moeten worden ondernomen bij schommelingen in de belasting. Zonder een nauwkeurige blauwdruk kan HPA niet effectief functioneren, wat kan leiden tot ongewenste resultaten of inefficiëntie (InSpark, 20 oktober 2023).
@@ -105,7 +105,7 @@ HPA (Horizontal Pod Autoscaler) kent de volgende nadelen:
 <br>
 <br>
 
-## Hoe past HPA in het DevOps landschap?
+## HPA in het DevOps landschap
 Hoe HPA in het DevOps landschap past leg ik uit aan de hand van het CDMM model.
 
 ### 🧑‍🤝‍🧑 Culture & Organization
@@ -132,7 +132,7 @@ Teams gebruiken HPA om schaalbaarheid te automatiseren, samenwerking te verbeter
 <br>
 <br>
 
-## Wat zijn de verschillende manieren om HPA in te stellen?
+## Manieren om HPA in te stellen
 
 <br>
 
