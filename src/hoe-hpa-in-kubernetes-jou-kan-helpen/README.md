@@ -468,7 +468,7 @@ Kubernetes past het aantal pods aan op basis van de belasting.
 <br>
 
 ## Conclusie
-De Horizontal Pod Autoscaler (HPA) is een krachtige tool binnen Kubernetes voor organisaties die hun applicaties dynamisch willen schalen op basis van de belasting. Dit kan veel waarde opleveren in scenario's waar pieken en dalen in gebruik vaak voorkomen, zoals bij e-commerce platforms of apps met wisselende gebruikersaantallen.
+De Horizontal Pod Autoscaler is een krachtige tool binnen Kubernetes voor organisaties die hun applicaties dynamisch willen schalen op basis van de belasting. Dit kan veel waarde opleveren in scenario's waar pieken en dalen in gebruik vaak voorkomen, zoals bij e-commerce platforms of apps met wisselende gebruikersaantallen.
 
 Maar niet elke organisatie heeft die behoefte. Als je geen noodzaak hebt om automatisch op te schalen, kan Kubernetes, met zijn uitgebreide functionaliteiten, misschien overkill zijn. In dat geval zijn er wellicht eenvoudigere manieren om je applicaties te beheren zonder de complexiteit van een volledige Kubernetes-omgeving.
 
