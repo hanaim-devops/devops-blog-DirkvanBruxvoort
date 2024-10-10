@@ -5,7 +5,7 @@
 *[Dirk van Bruxvoort, oktober 2024.](https://github.com/hanaim-devops/devops-blog-DirkvanBruxvoort)*
 <hr/>
 
-Op dit moment volg ik de minor DevOps aan de HAN. Voor deze minor leg ik in dit blogbericht leg ik uit hoe Horizontal Pod Autoscaling (HPA) in Kubernetes werkt. Kubernetes is een krachtig, open-source platform dat moderne apps beheert (Kubernetes, 18 februari 2024). Het automatiseert het draaien, schalen en beheren van apps die in containers draaien (zelfstandige pakketten die alles bevatten wat een app nodig heeft om te werken). Kubernetes functioneert als een slimme en ervaren manager voor apps, vergelijkbaar met hoe een restaurantmanager zijn personeel aanstuurt. Wanneer het drukker wordt in een restaurant, voegt de manager meer koks toe om alle bestellingen op tijd te verwerken. Kubernetes doet hetzelfde voor apps: het verdeelt automatisch het werk, voegt nieuwe "werknemers" (pods) toe als het drukker wordt, en lost problemen op zonder handmatige tussenkomst. Het zorgt ervoor dat apps geüpdatet worden zonder uitval en houdt alles veilig en georganiseerd. <br>
+Op dit moment volg ik de minor DevOps aan de HAN. Voor deze minor leg ik in dit blogbericht leg ik uit hoe Horizontal Pod Autoscaling (HPA) in Kubernetes werkt. Kubernetes is een open-source platform dat apps beheert (Kubernetes, 18 februari 2024). Het automatiseert het draaien, schalen en beheren van apps die in containers draaien (zelfstandige pakketten die alles bevatten wat een app nodig heeft om te werken). Kubernetes functioneert als een manager voor apps, vergelijkbaar met hoe een restaurantmanager zijn personeel aanstuurt. Wanneer het drukker wordt in een restaurant, voegt de manager meer koks toe om alle bestellingen op tijd te verwerken. Kubernetes doet hetzelfde voor apps: het verdeelt automatisch het werk, waarmee kubernetes er automatisch meer of minder pods laat zijn. En kubernetes lost problemen op zonder handmatige tussenkomst. Het zorgt ervoor dat apps geüpdatet worden zonder uitval en houdt alles veilig en georganiseerd. <br>
 Meer over Kubernetes lees je hier: 
 
 [kubernetes.io](https://kubernetes.io/).
@@ -58,22 +58,26 @@ Meer over Kubernetes lees je hier:
 
 ## HPA uitgelegd
 ![wat-is-hpa](https://www.kubecost.com/images/hpa-autoscaling.png)
-Horizontal Pod Autoscaling is een functie van Kubernetes die automatisch meer of minder "werknemers" (pods) toevoegt, vergelijkbaar met het toevoegen van meer koks in een keuken bij drukte. HPA monitort de werklast van apps (zoals CPU- of geheugengebruik) en zorgt ervoor dat er altijd genoeg 'koks' aanwezig zijn om de 'keuken' soepel te laten draaien. Dit houdt de apps altijd krachtig, zelfs bij toenemende belasting. Ik bespreek ook andere manieren om te schalen en ervoor te zorgen dat apps altijd de benodigde resources hebben.
+*Afbeelding 1: Wat HPA is (Kubecost, z.d.).* <br><br>
+
+Ik breid het voorbeeld van het restaurant uit. Horizontal Pod Autoscaling is een functie van Kubernetes die automatisch meer of minder "werknemers" (pods) toevoegt, vergelijkbaar met het toevoegen van meer koks in een keuken bij drukte. HPA monitort de werklast van apps (zoals CPU- of geheugengebruik) en zorgt ervoor dat er altijd genoeg 'koks' aanwezig zijn om de 'keuken' soepel te laten draaien. Dit houdt de apps altijd krachtig, zelfs bij toenemende belasting. Ik bespreek ook andere manieren om te schalen en ervoor te zorgen dat apps altijd de benodigde resources hebben in deze blog. In afbeelding 1 staat afgebeeld wat HPA is.
+
+
 
 <br>
 <br>
 
 ## Hoe HPA werkt
 ![hoe-werkt-hpa](https://www.kubecost.com/images/hpa-overview.png)
-*Afbeelding 1: Hoe hpa werkt (Kubecost, z.d.).* <br><br>
+*Afbeelding 2: Hoe hpa werkt (Kubecost, z.d.).* <br><br>
 
-Ik breid het restaurantvoorbeeld uit om de werking van Horizontal Pod Autoscaling in Kubernetes uit te leggen. In een restaurant met een keuken (de server) waar koks (pods) maaltijden bereiden, probeert de manager altijd genoeg koks beschikbaar te hebben om klanten goed te bedienen, zonder onnodig kosten te maken door te veel koks in dienst te hebben.
+Ik breid het restaurantvoorbeeld uit om de werking van Horizontal Pod Autoscaling in Kubernetes uit te leggen. In een restaurant met een keuken (de server) waar koks (pods) maaltijden bereiden, zorgt de manager ervoor dat er altijd genoeg koks beschikbaar zijn om klanten goed te bedienen, zonder onnodig kosten te maken door te veel koks in dienst te hebben.
 
 ### Metrics Server (De Bewaker):
-De slimme bewaker monitort continu de drukte in de keuken. Deze bewaker meet de werklast van de koks, zoals CPU- en geheugengebruik, in plaats van alleen te kijken naar hoe vol de keuken is.
+De bewaker houdt continu in de gaten wat de drukte in de keuken is. Deze bewaker meet de werklast van de koks, zoals CPU- en geheugengebruik, in plaats van alleen te kijken naar hoe vol de keuken is.
 
 ### Horizontal Pod Autoscaler (De Manager):
-De manager ontvangt informatie van de bewaker (Metrics Server) en beslist of de keuken extra koks nodig heeft, op basis van de werkdruk. Bij een drukke keuken, waar koks het moeilijk hebben om alle bestellingen op tijd klaar te maken, kan de manager besluiten extra koks aan te nemen. Bij rustigere momenten kan de manager besluiten sommige koks weg te sturen.
+De manager ontvangt informatie van de bewaker (Metrics Server) en beslist of de keuken extra koks nodig heeft, op basis van de werkdruk. Bij een drukke keuken, waar koks moeite hebben om alle bestellingen op tijd klaar te maken, kan de manager besluiten extra koks aan te nemen. Bij rustigere momenten kan de manager besluiten sommige koks weg te sturen.
 
 ### Deployment (De Personeelsplanner):
 De personeelsplanner regelt het aantal koks in de keuken op basis van de instructies van de manager. De instructies van de manager over het toevoegen of verwijderen van koks voert de personeelsplanner uit, zodat altijd het juiste aantal koks aanwezig is.
@@ -99,22 +103,23 @@ Om HPA in te stellen, maak je een HPA-object aan met de volgende eigenschappen:
 
 ## Voordelen HPA
 HPA biedt de volgende voordelen:
-- Onbeperkte flexibiliteit: HPA maakt het mogelijk om automatisch op en neer te schalen op basis van de belasting van je applicaties. Dit zorgt voor een dynamische toewijzing van resources, waardoor je je Kubernetes-cluster effectief kunt beheren zonder handmatige ingrepen (InSpark, 20 oktober 2023).
-- Optimalisatie van prestaties: Door het gebruik van HPA kun je je applicaties nauwkeurig en efficiënt schalen op basis van de vraag. Microservices kunnen individueel worden opgeschaald, wat leidt tot een optimale prestatie. Bovendien zorgt HPA ervoor dat Kubernetes constant de nodes monitort en automatisch reageert op eventuele problemen, waardoor de prestaties en beschikbaarheid van je applicaties altijd hoog blijven (InSpark, 20 oktober 2023).
-- Sterkere focus op DevOps en business: Dankzij de automatisering van schaalbaarheid en de flexibiliteit die HPA biedt, kunnen DevOps-teams zich meer richten op het ontwikkelen van de applicaties en minder op infrastructuurbeheer. Dit leidt tot een snellere time-to-market en efficiëntere ontwikkeling van applicaties (InSpark, 20 oktober 2023).
-- Kostenbesparing: HPA zorgt ervoor dat je alleen betaalt voor de resources die je daadwerkelijk nodig hebt. Dit resulteert in lagere kosten, omdat overprovisionering wordt vermeden en je Kubernetes-cluster optimaal wordt benut (InSpark, 20 oktober 2023).
-- Tijdsbesparing door automatisering: Omdat het schalen van je pods automatisch wordt beheerd door HPA, hoef je niet langer handmatig in te grijpen om je resources aan te passen. Dit bespaart tijd en maakt het eenvoudiger om nieuwe functies en updates snel en schaalbaar uit te rollen (InSpark, 20 oktober 2023).
-- Ondersteuning door een grote community: HPA is een belangrijk onderdeel van Kubernetes, dat op zijn beurt wordt ondersteund door een grote open-source community. Hierdoor kun je rekenen op voortdurende verbeteringen en uitgebreide ondersteuning vanuit de community (InSpark, 20 oktober 2023).
+- Flexibiliteit: HPA maakt het mogelijk om automatisch op en neer te schalen op basis van de belasting van je applicaties. Dit zorgt voor een toewijzing van resources, waardoor je je Kubernetes-cluster kunt beheren zonder handmatige ingrepen (InSpark, 20 oktober 2023).
+- Optimalisatie van prestaties: Door het gebruik van HPA kun je je applicaties schalen op basis van de vraag. Je kunt microservices individueel opschalen, wat leidt tot prestatie. Bovendien zorgt HPA ervoor dat Kubernetes de nodes monitort en automatisch reageert op problemen, waardoor de prestaties en beschikbaarheid van je applicaties hoog blijven (InSpark, 20 oktober 2023).
+- Focus op DevOps en business: Dankzij de automatisering van schaalbaarheid en de flexibiliteit die HPA biedt, kunnen DevOps-teams zich meer richten op het ontwikkelen van de applicaties en minder op infrastructuurbeheer. Dit leidt tot een time-to-market en ontwikkeling van applicaties (InSpark, 20 oktober 2023).
+- Kostenbesparing: HPA zorgt ervoor dat je alleen betaalt voor de resources die je nodig hebt. Dit resulteert in kosten, omdat overprovisionering wordt vermeden en je Kubernetes-cluster wordt benut (InSpark, 20 oktober 2023).
+- Tijdsbesparing door automatisering: Omdat HPA het schalen van pods beheert, hoef je niet langer handmatig in te grijpen om je resources aan te passen. Dit bespaart tijd en maakt het eenvoudiger om nieuwe functies en updates uit te rollen (InSpark, 20 oktober 2023).
+- Ondersteuning door een community: HPA is een onderdeel van Kubernetes, dat een open-source community ondersteunt. Hierdoor kun je rekenen op verbeteringen en ondersteuning vanuit de community (InSpark, 20 oktober 2023).
+
 
 <br>
 <br>
 
 ## Nadelen HPA
 HPA kent de volgende nadelen:
-- Je raakt het overzicht kwijt: Het gebruik van HPA in Kubernetes kan leiden tot een verlies van overzicht. Wanneer je probeert om alle workloads en applicaties tegelijk te moderniseren en te migreren, kan het complex zijn om alle containers en hun schaalacties te monitoren. Containers zijn namelijk dynamische eenheden die snel kunnen worden aangemaakt of verwijderd, waardoor je moeite kunt hebben om je infrastructuur volledig te overzien (InSpark, 20 oktober 2023).
-- Je hebt geen eigen blauwdruk gemaakt: Hoewel HPA automatisch schaalt op basis van vooraf ingestelde voorwaarden, vereist het systeem dat je een gedetailleerde blauwdruk hebt van de gewenste staat van je applicaties. Dit betekent dat je exact moet definiëren hoe het systeem moet functioneren en welke acties moeten worden ondernomen bij schommelingen in de belasting. Zonder een nauwkeurige blauwdruk kan HPA niet effectief functioneren, wat kan leiden tot ongewenste resultaten of inefficiëntie (InSpark, 20 oktober 2023).
-- Je beheerst de functionaliteiten niet: In Kubernetes zijn containers vaak beperkt tot één specifieke functionaliteit. Dit betekent dat je zeer zorgvuldig moet zijn in het beheren en scheiden van verschillende functionaliteiten. Het samenvoegen van meerdere functies in één container kan leiden tot problemen, zoals moeilijkheden bij het onderhoud en de controle. Een nauwe samenwerking tussen development en operations (DevOps) is noodzakelijk om alle functionaliteiten effectief te beheren (InSpark, 20 oktober 2023).
-- Je creëert een kettingreactie: Door de strikte scheiding van functionaliteiten en het constante samenwerken van containers kan er een kettingreactie ontstaan wanneer er problemen optreden. Fouten in één container kunnen leiden tot het aanmaken van andere containers voor probleemoplossing, wat kan resulteren in een complexe keten van containers. Dit kan het debuggen bemoeilijken en leiden tot een onoverzichtelijke situatie waarin je voortdurend bezig bent met het oplossen van problemen en het bijwerken van containers volgens je blauwdruk (InSpark, 20 oktober 2023).
+- Je raakt het overzicht kwijt: Het gebruik van HPA in Kubernetes kan leiden tot een verlies van overzicht. Wanneer je probeert om alle workloads en applicaties tegelijk te moderniseren en te migreren, kan het complex zijn om alle containers en hun schaalacties te monitoren. Containers zijn eenheden die ontstaan of verdwijnen, waardoor je moeite kunt hebben om je infrastructuur te overzien (InSpark, 20 oktober 2023).
+- Je hebt geen eigen blauwdruk gemaakt: Hoewel HPA automatisch schaalt op basis van vooraf ingestelde voorwaarden, vereist het systeem dat je een blauwdruk hebt van de gewenste staat van je applicaties. Dit betekent dat je moet definiëren hoe het systeem moet functioneren en welke acties moeten worden ondernomen bij schommelingen in de belasting. Zonder een blauwdruk kan HPA niet functioneren, wat kan leiden tot resultaten of inefficiëntie (InSpark, 20 oktober 2023).
+- Je beheerst de functionaliteiten niet: In Kubernetes zijn containers beperkt tot één functionaliteit. Dit betekent dat je zorgvuldig moet zijn in het beheren en scheiden van verschillende functionaliteiten. Het samenvoegen van meerdere functies in één container kan leiden tot problemen, zoals moeilijkheden bij het onderhoud en de controle. Een samenwerking tussen development en operations (DevOps) is noodzakelijk om alle functionaliteiten te beheren (InSpark, 20 oktober 2023).
+- Je creëert een kettingreactie: Door de scheiding van functionaliteiten en het samenwerken van containers kan er een kettingreactie ontstaan wanneer er problemen optreden. Fouten in één container kunnen leiden tot nieuwe containers voor probleemoplossing, wat kan resulteren in een keten van containers. Dit kan het debuggen bemoeilijken en leiden tot een situatie waarin je bezig bent met het oplossen van problemen en het bijwerken van containers volgens je blauwdruk (InSpark, 20 oktober 2023).
 
 <br>
 <br>
@@ -123,25 +128,24 @@ HPA kent de volgende nadelen:
 Hoe HPA in het DevOps landschap past leg ik uit aan de hand van het CDMM model.
 
 ### 🧑‍🤝‍🧑 Culture & Organization
-- Multidisciplinair samenwerken: Teams gebruiken HPA om automatisch te schalen, waardoor ze verantwoordelijkheid delen voor de prestaties van applicaties. Dit bevordert directe samenwerking tussen development en operations, omdat operationele handelingen zoals schalen geen handmatige interventie meer vereisen.
-- Agile werkwijzen: Door HPA passen teams hun applicaties direct aan op de veranderende vraag, wat hen in staat stelt snel te reageren op feedback en nieuwe vereisten, volledig in lijn met Agile.
+- Samenwerken: Teams gebruiken HPA om automatisch te schalen, waardoor ze verantwoordelijkheid delen voor de prestaties van applicaties. Dit bevordert samenwerking tussen development en operations, omdat handelingen zoals schalen geen interventie meer vereisen.
+- Werkwijzen: Door HPA passen teams hun applicaties aan op de veranderende vraag, wat hen in staat stelt te reageren op feedback en vereisten, in lijn met Agile.
 
 ### ⛪ Design & Architecture
-- High Availability en microservices: Teams zetten HPA in om microservices zelfstandig te schalen, waardoor ze de beschikbaarheid en veerkracht van hun applicaties vergroten. Dit voorkomt dat een enkele service overbelast raakt en verhoogt de betrouwbaarheid.
-- Autonomy over authority: Teams nemen zelf beslissingen over de schaalbaarheid van hun applicaties zonder tussenkomst van een centraal systeem. Door HPA te gebruiken, behouden ze volledige controle over hoe hun applicaties omgaan met wisselende belasting.
+- High Availability en microservices: Teams zetten HPA in om microservices te schalen, waardoor ze de beschikbaarheid en veerkracht van hun applicaties vergroten. Dit voorkomt dat een service overbelast raakt en verhoogt de betrouwbaarheid.
+- Autonomy over authority: Teams nemen beslissingen over de schaalbaarheid van hun applicaties zonder tussenkomst van een systeem. Door HPA te gebruiken, behouden ze controle over hoe hun applicaties omgaan met belasting.
 
 ### 🏗️ Build & Deploy
-- Automate all the things: Teams integreren HPA in hun CI/CD-pijplijn om schaalbaarheid volledig te automatiseren. Ze configureren de autoscaler zodat deze automatisch reageert op veranderende belasting, wat zorgt voor een naadloze implementatie zonder handmatige interventie.
-- CI/CD integratie: Bij iedere nieuwe release zorgen teams ervoor dat HPA klaarstaat om de applicatie te schalen op basis van realtime belasting. Dit garandeert dat de applicatie optimaal presteert zonder dat er handmatig moet worden ingegrepen in de schaalbaarheid.
+- Automatiseren: Teams integreren HPA in hun CI/CD-pijplijn om schaalbaarheid te automatiseren. Ze configureren de autoscaler zodat deze reageert op belasting, wat zorgt voor een implementatie zonder interventie.
+- CI/CD integratie: Bij iedere release zorgen teams ervoor dat HPA klaarstaat om de applicatie te schalen op basis van belasting. Dit garandeert dat de applicatie presteert zonder dat er moet worden ingegrepen in de schaalbaarheid.
 
 ### 🧪 Test & Verification
-- Bedrijfsmetrics en geautomatiseerd testen: Teams gebruiken HPA om belastingtests te doen op basis van CPU- en geheugenverbruik. Ze integreren deze gegevens in hun tests en passen de schaalbaarheid van de applicatie dynamisch aan op basis van testresultaten.
-- Testpiramide en Continuous Verification: Teams gebruiken HPA om te valideren hoe hun applicaties schalen bij verschillende belastingniveaus. Ze testen continu de reacties van hun applicaties op schaalbare belasting, wat essentieel is bij stress- en prestatietesten.
+- Metrics en testen: Teams gebruiken HPA om tests te doen op basis van CPU- en geheugenverbruik. Ze integreren deze gegevens in hun tests en passen de schaalbaarheid van de applicatie aan op basis van resultaten.
+- Testpiramide en verificatie: Teams gebruiken HPA om te valideren hoe hun applicaties schalen bij belastingniveaus. Ze testen de reacties van hun applicaties op schaalbare belasting, wat belangrijk is bij stress- en prestatietesten.
 
 ### 📈 Information & Reporting
-- Metrics vanuit productie: Teams monitoren de metrics die HPA levert om continu inzicht te krijgen in de prestaties van hun applicaties. Deze metrics helpen hen om realtime bij te sturen en de prestaties te optimaliseren.
-- Visualisatie van resourcegebruik: Door tools zoals Prometheus en Grafana te gebruiken, visualiseren teams de schaalbaarheid en resourcegebruik van hun applicaties. Dit geeft hen waardevolle inzichten die de feedbackloops versterken en betere besluitvorming ondersteunen.
-Teams gebruiken HPA om schaalbaarheid te automatiseren, samenwerking te verbeteren, en prestaties te optimaliseren. Dit past perfect binnen de kernwaarden van een DevOps-werkwijze binnen het CDMM.
+- Metrics vanuit productie: Teams monitoren de metrics die HPA levert om inzicht te krijgen in de prestaties van hun applicaties. Deze metrics helpen hen om bij te sturen en de prestaties te optimaliseren.
+- Visualisatie van resourcegebruik: Door tools zoals Prometheus en Grafana te gebruiken, visualiseren teams de schaalbaarheid en resourcegebruik van hun applicaties. Dit geeft hen inzichten die de feedbackloops versterken en besluitvorming ondersteunen.
 
 <br>
 <br>
@@ -332,7 +336,7 @@ kubectl get deployment metrics-server -n kube-system
 <br>
 
 ### Stap 2: Implementeer je Applicatie
-Stel een eenvoudige Nginx-server in als voorbeeldapplicatie. Maak een bestand voor de Nginx Deployment, sla het op en implementeer het. Maak de Nginx-app toegankelijk.
+Stel een Nginx-server in als voorbeeldapplicatie. Maak een bestand voor de Nginx Deployment, sla het op en implementeer het. Maak de Nginx-app toegankelijk.
 
 ```
 apiVersion: apps/v1
@@ -468,11 +472,11 @@ Kubernetes past het aantal pods aan op basis van de belasting.
 <br>
 
 ## Conclusie
-De Horizontal Pod Autoscaler is een krachtige tool binnen Kubernetes voor organisaties die hun applicaties dynamisch willen schalen op basis van de belasting. Dit kan veel waarde opleveren in scenario's waar pieken en dalen in gebruik vaak voorkomen, zoals bij e-commerce platforms of apps met wisselende gebruikersaantallen.
+De Horizontal Pod Autoscaler is een tool binnen Kubernetes voor organisaties die hun applicaties willen schalen op basis van de belasting. Dit kan waarde opleveren in scenario's waar pieken en dalen in gebruik voorkomen, zoals bij e-commerce platforms of apps met wisselende gebruikersaantallen.
 
-Maar niet elke organisatie heeft die behoefte. Als je geen noodzaak hebt om automatisch op te schalen, kan Kubernetes, met zijn uitgebreide functionaliteiten, misschien overkill zijn. In dat geval zijn er wellicht eenvoudigere manieren om je applicaties te beheren zonder de complexiteit van een volledige Kubernetes-omgeving.
+Maar niet elke organisatie heeft die behoefte. Als je geen noodzaak hebt om automatisch op te schalen, kan Kubernetes, met zijn functionaliteiten, misschien te veel zijn. In dat geval zijn er manieren om je applicaties te beheren zonder de complexiteit van een Kubernetes-omgeving.
 
-Het is dus belangrijk om te bepalen welke behoeften jouw organisatie heeft. Als schaling een vereiste is, biedt HPA binnen Kubernetes een flexibele en efficiënte oplossing. Zo niet, dan is het verstandig om te evalueren welke technologie het best past bij je doelen.
+Het is dus belangrijk om te bepalen welke behoeften jouw organisatie heeft. Als schaling een vereiste is, biedt HPA binnen Kubernetes een oplossing. Zo niet, dan is het verstandig om te evalueren welke technologie het best past bij je doelen.
 
 <br>
 <br>
