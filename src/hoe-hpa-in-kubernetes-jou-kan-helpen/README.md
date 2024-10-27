@@ -5,8 +5,8 @@
 *[Dirk van Bruxvoort, oktober 2024.](https://github.com/hanaim-devops/devops-blog-DirkvanBruxvoort)*
 <hr/>
 
-Op dit moment volg ik de minor DevOps aan de HAN. Voor deze minor leg ik in dit blogbericht leg ik uit hoe Horizontal Pod Autoscaling (HPA) in Kubernetes werkt. Kubernetes is een open-source platform dat apps beheert (Kubernetes, 18 februari 2024). Het automatiseert het draaien, schalen en beheren van apps die in containers draaien (zelfstandige pakketten die alles bevatten wat een app nodig heeft om te werken). Kubernetes functioneert als een manager voor apps, vergelijkbaar met hoe een restaurantmanager zijn personeel aanstuurt. Wanneer het drukker is in een restaurant, voegt de manager meer koks toe om alle bestellingen op tijd te verwerken. Kubernetes doet hetzelfde voor apps: het verdeelt automatisch het werk, waarmee kubernetes er automatisch meer of minder pods laat zijn. En kubernetes lost problemen op zonder handmatige tussenkomst. Het zorgt ervoor dat apps geüpdatet zijn zonder uitval en houdt alles veilig en georganiseerd. <br>
-Meer over Kubernetes lees je hier: 
+Op dit moment volg ik de minor DevOps aan de HAN. Voor deze minor leg ik in dit blogbericht leg ik uit hoe Horizontal Pod Autoscaling (HPA) in Kubernetes werkt. Kubernetes is een open-source platform dat apps beheert (Kubernetes, 2024). Het automatiseert het draaien, schalen en beheren van apps die in containers draaien (zelfstandige pakketten die alles bevatten wat een app nodig heeft om te werken). Kubernetes functioneert als een manager voor apps, vergelijkbaar met hoe een restaurantmanager zijn personeel aanstuurt. Wanneer het drukker is in een restaurant, voegt de manager meer koks toe om alle bestellingen op tijd te verwerken. Kubernetes doet hetzelfde voor apps: het verdeelt automatisch het werk, waarmee kubernetes er automatisch meer of minder pods laat zijn. En kubernetes lost problemen op zonder handmatige tussenkomst. Het zorgt ervoor dat apps geüpdatet zijn zonder uitval en houdt alles veilig en georganiseerd. <br>
+Meer over Kubernetes lees je op: 
 
 [kubernetes.io](https://kubernetes.io/).
 
@@ -92,23 +92,23 @@ In afbeelding 2 staat welke onderdelen er zijn binnen HPA en hoe deze met elkaar
 
 ## Parameters HPA 
 Om HPA in te stellen, maak je een HPA-object aan met de volgende eigenschappen:
-- Target CPU- of geheugenbelasting: Stel de CPU- of geheugenbelasting in die je wilt bereiken (Spectrocloud, n.d.).
-- Min replicas: Bepaal het minimum aantal pods dat je nodig hebt (Spectrocloud, n.d.).
-- Max replicas: Stel het maximum aantal pods in dat je wilt toestaan (Spectrocloud, n.d.).
-- Scaling down policy: Definieer de regels die bepalen wanneer je kunt schalen naar beneden (Kubernetes, 18 februari 2024).
-- Scaling up policy: Stel de regels in die bepalen wanneer je kunt schalen naar boven (Kubernetes, 18 februari 2024).
+- Target CPU- of geheugenbelasting: Stel de CPU- of geheugenbelasting in die je wilt bereiken (Princess Egbuna O, n.d.).
+- Min replicas: Bepaal het minimum aantal pods dat je nodig hebt (Princess Egbuna O, n.d.).
+- Max replicas: Stel het maximum aantal pods in dat je wilt toestaan (Princess Egbuna O, n.d.).
+- Scaling down policy: Definieer de regels die bepalen wanneer je kunt schalen naar beneden (Kubernetes, 2024).
+- Scaling up policy: Stel de regels in die bepalen wanneer je kunt schalen naar boven (Kubernetes, 2024).
 
 <br>
 <br>
 
 ## Voordelen HPA
 HPA biedt de volgende voordelen:
-- Flexibiliteit: HPA maakt het mogelijk om automatisch op en neer te schalen op basis van de belasting van je applicaties. Dit zorgt voor een toewijzing van resources, wat ervoor zorgt dat je je Kubernetes-cluster kunt beheren zonder handmatige ingrepen (InSpark, 20 oktober 2023).
-- Optimalisatie van prestaties: Met het gebruik van HPA kun je je applicaties schalen op basis van de vraag. Je kunt microservices individueel opschalen, wat leidt tot prestatie. Bovendien zorgt HPA ervoor dat Kubernetes de nodes monitort en automatisch reageert op problemen, wat ervoor zorgt dat de prestaties en beschikbaarheid van je applicaties hoog blijven (InSpark, 20 oktober 2023).
-- Focus op DevOps en business: Dankzij de automatisering van schaalbaarheid en de flexibiliteit die HPA biedt, kunnen DevOps-teams zich meer richten op het ontwikkelen van de applicaties en minder op infrastructuurbeheer. Dit leidt tot een time-to-market en ontwikkeling van applicaties (InSpark, 20 oktober 2023).
-- Kostenbesparing: HPA zorgt ervoor dat je alleen betaalt voor de resources die je nodig hebt. Dit resulteert in kosten, omdat overprovisionering vermeden is en je Kubernetes-cluster is benut (InSpark, 20 oktober 2023).
-- Tijdsbesparing met automatisering: Omdat HPA het schalen van pods beheert, hoef je niet langer handmatig in te grijpen om je resources aan te passen. Dit bespaart tijd en maakt het eenvoudiger om nieuwe functies en updates uit te rollen (InSpark, 20 oktober 2023).
-- Ondersteuning met community: HPA is een onderdeel van Kubernetes, dat een open-source community ondersteunt. Je kunt rekenen op verbeteringen en ondersteuning vanuit de community (InSpark, 20 oktober 2023).
+- Flexibiliteit: HPA maakt het mogelijk om automatisch op en neer te schalen op basis van de belasting van je applicaties. Dit zorgt voor een toewijzing van resources, wat ervoor zorgt dat je je Kubernetes-cluster kunt beheren zonder handmatige ingrepen (InSpark, 2023).
+- Optimalisatie van prestaties: Met het gebruik van HPA kun je je applicaties schalen op basis van de vraag. Je kunt microservices individueel opschalen, wat leidt tot prestatie. Bovendien zorgt HPA ervoor dat Kubernetes de nodes monitort en automatisch reageert op problemen, wat ervoor zorgt dat de prestaties en beschikbaarheid van je applicaties hoog blijven (InSpark, 2023).
+- Focus op DevOps en business: Dankzij de automatisering van schaalbaarheid en de flexibiliteit die HPA biedt, kunnen DevOps-teams zich meer richten op het ontwikkelen van de applicaties en minder op infrastructuurbeheer. Dit leidt tot een time-to-market en ontwikkeling van applicaties (InSpark, 2023).
+- Kostenbesparing: HPA zorgt ervoor dat je alleen betaalt voor de resources die je nodig hebt. Dit resulteert in kosten, omdat overprovisionering vermeden is en je Kubernetes-cluster is benut (InSpark, 2023).
+- Tijdsbesparing met automatisering: Omdat HPA het schalen van pods beheert, hoef je niet langer handmatig in te grijpen om je resources aan te passen. Dit bespaart tijd en maakt het eenvoudiger om nieuwe functies en updates uit te rollen (InSpark, 2023).
+- Ondersteuning met community: HPA is een onderdeel van Kubernetes, dat een open-source community ondersteunt. Je kunt rekenen op verbeteringen en ondersteuning vanuit de community (InSpark, 2023).
 
 
 <br>
@@ -116,10 +116,10 @@ HPA biedt de volgende voordelen:
 
 ## Nadelen HPA
 HPA kent de volgende nadelen:
-- Je raakt het overzicht kwijt: Het gebruik van HPA in Kubernetes kan leiden tot een verlies van overzicht. Wanneer je probeert om alle workloads en applicaties tegelijk te moderniseren en te migreren, kan het complex zijn om alle containers en hun schaalacties te monitoren. Containers zijn eenheden die ontstaan of verdwijnen, wat ervoor zorgt dat je moeite kunt hebben om je infrastructuur te overzien (InSpark, 20 oktober 2023).
-- Je hebt geen eigen blauwdruk gemaakt: Hoewel HPA automatisch schaalt op basis van vooraf ingestelde voorwaarden, vereist het systeem dat je een blauwdruk hebt van de gewenste staat van je applicaties. Dit betekent dat je moet definiëren hoe het systeem moet functioneren en welke acties moeten zijn ondernomen bij schommelingen in de belasting. Zonder een blauwdruk kan HPA niet functioneren, wat kan leiden tot resultaten of inefficiëntie (InSpark, 20 oktober 2023).
-- Je beheerst de functionaliteiten niet: In Kubernetes zijn containers beperkt tot één functionaliteit. Dit betekent dat je zorgvuldig moet zijn in het beheren en scheiden van verschillende functionaliteiten. Het samenvoegen van meerdere functies in één container kan leiden tot problemen, zoals moeilijkheden bij het onderhoud en de controle. Een samenwerking tussen development en operations (DevOps) is noodzakelijk om alle functionaliteiten te beheren (InSpark, 20 oktober 2023).
-- Je creëert een kettingreactie: De scheiding van functionaliteiten en het samenwerken van containers kan er een kettingreactie ontstaan wanneer er problemen optreden. Fouten in één container kunnen leiden tot nieuwe containers voor probleemoplossing, wat kan resulteren in een keten van containers. Dit kan het debuggen bemoeilijken en leiden tot een situatie waarin je bezig bent met het oplossen van problemen en het bijwerken van containers volgens je blauwdruk (InSpark, 20 oktober 2023).
+- Je raakt het overzicht kwijt: Het gebruik van HPA in Kubernetes kan leiden tot een verlies van overzicht. Wanneer je probeert om alle workloads en applicaties tegelijk te moderniseren en te migreren, kan het complex zijn om alle containers en hun schaalacties te monitoren. Containers zijn eenheden die ontstaan of verdwijnen, wat ervoor zorgt dat je moeite kunt hebben om je infrastructuur te overzien (InSpark, 2023).
+- Je hebt geen eigen blauwdruk gemaakt: Hoewel HPA automatisch schaalt op basis van vooraf ingestelde voorwaarden, vereist het systeem dat je een blauwdruk hebt van de gewenste staat van je applicaties. Dit betekent dat je moet definiëren hoe het systeem moet functioneren en welke acties moeten zijn ondernomen bij schommelingen in de belasting. Zonder een blauwdruk kan HPA niet functioneren, wat kan leiden tot resultaten of inefficiëntie (InSpark, 2023).
+- Je beheerst de functionaliteiten niet: In Kubernetes zijn containers beperkt tot één functionaliteit. Dit betekent dat je zorgvuldig moet zijn in het beheren en scheiden van verschillende functionaliteiten. Het samenvoegen van meerdere functies in één container kan leiden tot problemen, zoals moeilijkheden bij het onderhoud en de controle. Een samenwerking tussen development en operations (DevOps) is noodzakelijk om alle functionaliteiten te beheren (InSpark, 2023).
+- Je creëert een kettingreactie: De scheiding van functionaliteiten en het samenwerken van containers kan er een kettingreactie ontstaan wanneer er problemen optreden. Fouten in één container kunnen leiden tot nieuwe containers voor probleemoplossing, wat kan resulteren in een keten van containers. Dit kan het debuggen bemoeilijken en leiden tot een situatie waarin je bezig bent met het oplossen van problemen en het bijwerken van containers volgens je blauwdruk (InSpark, 2023).
 
 <br>
 <br>
@@ -155,7 +155,7 @@ Hoe HPA in het DevOps landschap past leg ik uit aan de hand van het CDMM model.
 <br>
 
 ### CPU-gebaseerde autoscaling: 
-Je stelt HPA meestal in op basis van CPU-gebruik. Definieer een target CPU-gebruikspercentage (bijv. 50%). Als dit percentage overschreden is, voegt Kubernetes meer pods toe (Kubernetes, 18 februari 2024).
+Je stelt HPA meestal in op basis van CPU-gebruik. Definieer een target CPU-gebruikspercentage (bijv. 50%). Als dit percentage overschreden is, voegt Kubernetes meer pods toe (Kubernetes, 2024).
 ```
 yaml
 Copy code
@@ -180,7 +180,7 @@ spec:
 <br>
 
 ### Aangepaste metrieken: 
-Je configureert HPA ook op basis van aangepaste metrieken, zoals verzoeken per seconde of wachtrijlengte. Exporteer deze metrieken naar een monitoringssysteem zoals Prometheus en configureer ze vervolgens in de HPA-definitie (Kubernetes, 18 februari 2024).
+Je configureert HPA ook op basis van aangepaste metrieken, zoals verzoeken per seconde of wachtrijlengte. Exporteer deze metrieken naar een monitoringssysteem zoals Prometheus en configureer ze vervolgens in de HPA-definitie (Kubernetes, 2024).
 ```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -203,7 +203,7 @@ spec:
 <br>
 
 ### Geheugengebaseerde autoscaling: 
-Stel HPA ook in op basis van geheugengebruik, wat nuttig is voor geheugenintensieve applicaties (Kubernetes, 18 februari 2024).
+Stel HPA ook in op basis van geheugengebruik, wat nuttig is voor geheugenintensieve applicaties (Kubernetes, 2024).
 ```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -226,7 +226,7 @@ spec:
 <br>
 
 ### Schalen op meerdere metrieken: 
-Je kunt HPA instellen om op meerdere metrieken tegelijk te schalen, zoals zowel CPU- als geheugengebruik (Kubernetes, 18 februari 2024).
+Je kunt HPA instellen om op meerdere metrieken tegelijk te schalen, zoals zowel CPU- als geheugengebruik (Kubernetes, 2024).
 ```
 metrics:
 - type: Resource
@@ -242,7 +242,7 @@ metrics:
 <br>
 
 ### Aangepaste schaalregels: 
-Gebruik de behavior-sectie van HPA om aangepaste schaalregels in te stellen, zoals vertragingen of het geleidelijk toevoegen/verwijderen van pods (Kubernetes, 18 februari 2024).
+Gebruik de behavior-sectie van HPA om aangepaste schaalregels in te stellen, zoals vertragingen of het geleidelijk toevoegen/verwijderen van pods (Kubernetes, 2024).
 ```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -276,7 +276,7 @@ spec:
 <br>
 
 ### Pod Prioriteit en Preëmptie: 
-Stel pod-prioriteit en preëmptie in om te bepalen welke pods als eerste schalen bij resource-schaarste, en geef prioriteit aan belangrijke workloads (Kubernetes, 19 februari 2024).
+Stel pod-prioriteit en preëmptie in om te bepalen welke pods als eerste schalen bij resource-schaarste, en geef prioriteit aan belangrijke workloads (Kubernetes, 2024).
 ```
 apiVersion: v1
 kind: Pod
@@ -314,7 +314,7 @@ spec:
 <br>
 
 ## Voorbeeld implementatie
-Hier lees je hoe je automatische schaalvergroting voor een app instelt (Medium, 15 juni 2024). Ik ga ervan uit dat je al een Kubernetes-cluster en Minikube draaiende hebt.
+In dit hoofdstuk lees je hoe je automatische schaalvergroting voor een app instelt (Patel R, 2024). Ik ga ervan uit dat je al een Kubernetes-cluster en Minikube draaiende hebt.
 
 <br>
 
@@ -484,7 +484,7 @@ Het is dus belangrijk om te bepalen welke behoeften jouw organisatie heeft. Als 
 ## Bronnen
 - *Kubecost. (z.d.). The Guide To Kubernetes HPA by Example. Geraadpleegd 12 september 2024 op https://www.kubecost.com/kubernetes-autoscaling/kubernetes-hpa/ .*
 - *Kubernetes. (2024, 18 februari). Horizontal pod autoscaling. Geraadpleegd 12 september 2024 op https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/ .*
-- *Medium. (2024, 15 juni). Introduction to Horizontal Pod Autoscaler (HPA) in Kubernetes with Example. Geraadpleegd 12 september 2024 op https://medium.com/@ravipatel.it/introduction-to-horizontal-pod-autoscaler-hpa-in-kubernetes-with-example-775babb88b6f .*
+- *Patel, R. (2024, 15 juni). Introduction to Horizontal Pod Autoscaler (HPA) in Kubernetes with Example. Geraadpleegd 12 september 2024 op https://medium.com/@ravipatel.it/introduction-to-horizontal-pod-autoscaler-hpa-in-kubernetes-with-example-775babb88b6f .*
 - *Kubernetes. (2024, 19 februari). Pod Priority and Preemption. Geraadpleegd 12 september 2024 op https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/ .*
 - *InSpark. (2023, 20 oktober). Kubernetes | Totale flexibiliteit met containers | InSpark. Geraadpleegd 12 september 2024 op https://www.inspark.nl/kubernetes/ .*
-- *Spectrocloud. (2023, 9 oktober). Kubernetes autoschaling pattern. Geraadpleegd 12 september 2024 op https://www.spectrocloud.com/blog/kubernetes-autoscaling-patterns-hpa-vpa-and-keda .*
+- *Princess Egbuna, O. (2023, 9 oktober). Kubernetes autoschaling pattern. Geraadpleegd 12 september 2024 op https://www.spectrocloud.com/blog/kubernetes-autoscaling-patterns-hpa-vpa-and-keda .*
