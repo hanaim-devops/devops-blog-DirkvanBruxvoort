@@ -314,7 +314,7 @@ spec:
 <br>
 
 ## Voorbeeld implementatie
-In dit hoofdstuk lees je hoe je automatische schaalvergroting voor een app instelt (Patel R, 2024). Ik ga ervan uit dat je al een Kubernetes-cluster en Minikube draaiende hebt.
+Hoe je automatische schaalvergroting voor een app instelt beschrijft Ravi Patel in zijn Medium artikel (Patel R, 2024). Ik ga ervan uit dat je al een Kubernetes-cluster en Minikube draaiende hebt.
 
 <br>
 
