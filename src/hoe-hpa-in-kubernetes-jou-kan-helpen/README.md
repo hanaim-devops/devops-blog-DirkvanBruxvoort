@@ -5,7 +5,7 @@
 *[Dirk van Bruxvoort, oktober 2024.](https://github.com/hanaim-devops/devops-blog-DirkvanBruxvoort)*
 <hr/>
 
-Op dit moment volg ik de minor DevOps aan de HAN. Voor deze minor leg ik in dit blogbericht leg ik uit hoe Horizontal Pod Autoscaling (HPA) in Kubernetes werkt. Kubernetes is een open-source platform dat apps beheert (Kubernetes, 2024). Het automatiseert het draaien, schalen en beheren van apps die in containers draaien (zelfstandige pakketten die alles bevatten wat een app nodig heeft om te werken). Kubernetes functioneert als een manager voor apps, vergelijkbaar met hoe een restaurantmanager zijn personeel aanstuurt. Wanneer het drukker is in een restaurant, voegt de manager meer koks toe om alle bestellingen op tijd te verwerken. Kubernetes doet hetzelfde voor apps: het verdeelt automatisch het werk, waarmee kubernetes er automatisch meer of minder pods laat zijn. En kubernetes lost problemen op zonder handmatige tussenkomst. Het zorgt ervoor dat apps geüpdatet zijn zonder uitval en houdt alles veilig en georganiseerd. <br>
+Op dit moment volg ik de minor DevOps aan de HAN. Voor deze minor leg ik in dit blogbericht leg ik uit hoe Horizontal Pod Autoscaling (HPA) in Kubernetes werkt. Kubernetes is een open-source platform dat apps beheert (CNCF, 2024). Het automatiseert het draaien, schalen en beheren van apps die in containers draaien (zelfstandige pakketten die alles bevatten wat een app nodig heeft om te werken). Kubernetes functioneert als een manager voor apps, vergelijkbaar met hoe een restaurantmanager zijn personeel aanstuurt. Wanneer het drukker is in een restaurant, voegt de manager meer koks toe om alle bestellingen op tijd te verwerken. Kubernetes doet hetzelfde voor apps: het verdeelt automatisch het werk, waarmee kubernetes er automatisch meer of minder pods laat zijn. En kubernetes lost problemen op zonder handmatige tussenkomst. Het zorgt ervoor dat apps geüpdatet zijn zonder uitval en houdt alles veilig en georganiseerd. <br>
 Meer over Kubernetes lees je op: 
 
 [kubernetes.io](https://kubernetes.io/).
@@ -95,8 +95,8 @@ Om HPA in te stellen, maak je een HPA-object aan met de volgende eigenschappen:
 - Target CPU- of geheugenbelasting: Stel de CPU- of geheugenbelasting in die je wilt bereiken (Princess Egbuna O, n.d.).
 - Min replicas: Bepaal het minimum aantal pods dat je nodig hebt (Princess Egbuna O, n.d.).
 - Max replicas: Stel het maximum aantal pods in dat je wilt toestaan (Princess Egbuna O, n.d.).
-- Scaling down policy: Definieer de regels die bepalen wanneer je kunt schalen naar beneden (Kubernetes, 2024).
-- Scaling up policy: Stel de regels in die bepalen wanneer je kunt schalen naar boven (Kubernetes, 2024).
+- Scaling down policy: Definieer de regels die bepalen wanneer je kunt schalen naar beneden (CNCF, 2024).
+- Scaling up policy: Stel de regels in die bepalen wanneer je kunt schalen naar boven (CNCF, 2024).
 
 <br>
 <br>
@@ -155,7 +155,7 @@ Hoe HPA in het DevOps landschap past leg ik uit aan de hand van het CDMM model.
 <br>
 
 ### CPU-gebaseerde autoscaling: 
-Je stelt HPA meestal in op basis van CPU-gebruik. Definieer een target CPU-gebruikspercentage (bijv. 50%). Als dit percentage overschreden is, voegt Kubernetes meer pods toe (Kubernetes, 2024).
+Je stelt HPA meestal in op basis van CPU-gebruik. Definieer een target CPU-gebruikspercentage (bijv. 50%). Als dit percentage overschreden is, voegt Kubernetes meer pods toe (CNCF, 2024).
 ```
 yaml
 Copy code
@@ -180,7 +180,7 @@ spec:
 <br>
 
 ### Aangepaste metrieken: 
-Je configureert HPA ook op basis van aangepaste metrieken, zoals verzoeken per seconde of wachtrijlengte. Exporteer deze metrieken naar een monitoringssysteem zoals Prometheus en configureer ze vervolgens in de HPA-definitie (Kubernetes, 2024).
+Je configureert HPA ook op basis van aangepaste metrieken, zoals verzoeken per seconde of wachtrijlengte. Exporteer deze metrieken naar een monitoringssysteem zoals Prometheus en configureer ze vervolgens in de HPA-definitie (CNCF, 2024).
 ```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -203,7 +203,7 @@ spec:
 <br>
 
 ### Geheugengebaseerde autoscaling: 
-Stel HPA ook in op basis van geheugengebruik, wat nuttig is voor geheugenintensieve applicaties (Kubernetes, 2024).
+Stel HPA ook in op basis van geheugengebruik, wat nuttig is voor geheugenintensieve applicaties (CNCF, 2024).
 ```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -226,7 +226,7 @@ spec:
 <br>
 
 ### Schalen op meerdere metrieken: 
-Je kunt HPA instellen om op meerdere metrieken tegelijk te schalen, zoals zowel CPU- als geheugengebruik (Kubernetes, 2024).
+Je kunt HPA instellen om op meerdere metrieken tegelijk te schalen, zoals zowel CPU- als geheugengebruik (CNCF, 2024).
 ```
 metrics:
 - type: Resource
@@ -242,7 +242,7 @@ metrics:
 <br>
 
 ### Aangepaste schaalregels: 
-Gebruik de behavior-sectie van HPA om aangepaste schaalregels in te stellen, zoals vertragingen of het geleidelijk toevoegen/verwijderen van pods (Kubernetes, 2024).
+Gebruik de behavior-sectie van HPA om aangepaste schaalregels in te stellen, zoals vertragingen of het geleidelijk toevoegen/verwijderen van pods (CNCF, 2024).
 ```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -276,7 +276,7 @@ spec:
 <br>
 
 ### Pod Prioriteit en Preëmptie: 
-Stel pod-prioriteit en preëmptie in om te bepalen welke pods als eerste schalen bij resource-schaarste, en geef prioriteit aan belangrijke workloads (Kubernetes, 2024).
+Stel pod-prioriteit en preëmptie in om te bepalen welke pods als eerste schalen bij resource-schaarste, en geef prioriteit aan belangrijke workloads (CNCF, 2024).
 ```
 apiVersion: v1
 kind: Pod
@@ -483,8 +483,8 @@ Het is dus belangrijk om te bepalen welke behoeften jouw organisatie heeft. Als 
 
 ## Bronnen
 - *Kubecost. (z.d.). The Guide To Kubernetes HPA by Example. Geraadpleegd 12 september 2024 op https://www.kubecost.com/kubernetes-autoscaling/kubernetes-hpa/ .*
-- *Kubernetes. (2024, 18 februari). Horizontal pod autoscaling. Geraadpleegd 12 september 2024 op https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/ .*
+- *CNCF. (2024, 18 februari). Horizontal pod autoscaling. Geraadpleegd 12 september 2024 op https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/ .*
 - *Patel, R. (2024, 15 juni). Introduction to Horizontal Pod Autoscaler (HPA) in Kubernetes with Example. Geraadpleegd 12 september 2024 op https://medium.com/@ravipatel.it/introduction-to-horizontal-pod-autoscaler-hpa-in-kubernetes-with-example-775babb88b6f .*
-- *Kubernetes. (2024, 19 februari). Pod Priority and Preemption. Geraadpleegd 12 september 2024 op https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/ .*
+- *CNCF. (2024, 19 februari). Pod Priority and Preemption. Geraadpleegd 12 september 2024 op https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/ .*
 - *InSpark. (2023, 20 oktober). Kubernetes | Totale flexibiliteit met containers | InSpark. Geraadpleegd 12 september 2024 op https://www.inspark.nl/kubernetes/ .*
 - *Princess Egbuna, O. (2023, 9 oktober). Kubernetes autoschaling pattern. Geraadpleegd 12 september 2024 op https://www.spectrocloud.com/blog/kubernetes-autoscaling-patterns-hpa-vpa-and-keda .*
